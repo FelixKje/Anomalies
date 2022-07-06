@@ -5,8 +5,7 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    void Update()
-    {
+    void Update() {
         float moveX = 0f;
         float moveY = 0f;
 
@@ -17,6 +16,6 @@ public class PlayerMovement : MonoBehaviour
 
         Vector3 moveVector = new Vector3(moveX, moveY).normalized;
         
-        GetComponent<MoveVelocity>().SetVelocity(moveVector);
+        GetComponent<IMoveVelocity>().SetVelocity(moveVector);
     }
 }
