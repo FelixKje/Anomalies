@@ -5,6 +5,9 @@ namespace Movement {
     public class PlayerAim : MonoBehaviour {
         [SerializeField] Transform weapon;
         void Update() {
+            Aim();
+        }
+        void Aim() {
             Vector3 mousePosition = Utilities.GetMouseWorldPosition();
             Vector3 aimDirection = (mousePosition - transform.position).normalized;
 
@@ -13,4 +16,6 @@ namespace Movement {
             weapon.transform.eulerAngles = new Vector3(0, 0, angle);
         }
     }
+    
+    
 }
