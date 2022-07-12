@@ -3,38 +3,66 @@ using System.Collections;
 using System.Collections.Generic;
 using Movement;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class ToggleCameraState : MonoBehaviour {
     [SerializeField] CameraFollow cameraFollow;
-    [SerializeField] GameObject commander;
-    [SerializeField] GameObject RTSMover;
+    [SerializeField] GameObject commanderGameObject;
+    [SerializeField] GameObject strategyGameObject;
+    
+    [SerializeField] float commanderDefaultZoom = 20f;
+    [SerializeField] float StrategyDefaultZoom = 50f;
+    [SerializeField] float ZoomAmount = 5f;
+
+    float zoom = 20f;
 
     void Start() {
-        cameraFollow.Setup(() => commander.transform.position);
+        cameraFollow.Setup(() => commanderGameObject.transform.position, () => zoom);
     }
     void Update() {
         if (Input.GetKeyDown(KeyCode.Tab)) {
-            if (!RTSMover.activeSelf) {
+            if (!strategyGameObject.activeSelf) {
                 RTSCamera();
             }
             else {
                 CommanderCamera();
             }
         }
+        if (Input.GetKeyDown(KeyCode.L) || Input.mouseScrollDelta.y > 0) {
+            ZoomIn();
+        }
+        if (Input.GetKeyDown(KeyCode.K) || Input.mouseScrollDelta.y < 0) {
+            ZoomOut();
+        }
     }
 
     void CommanderCamera() {
-        commander.GetComponent<PlayerMovement>().enabled = true;
-        commander.GetComponent<PlayerAim>().enabled = true;
-        cameraFollow.SetGetCameraFollowPositionFunc(() => commander.transform.position);
-        RTSMover.SetActive(false);
+        commanderGameObject.GetComponent<PlayerMovement>().enabled = true;
+        commanderGameObject.GetComponent<PlayerAim>().enabled = true;
+        cameraFollow.SetGetCameraFollowPositionFunc(() => commanderGameObject.transform.position);
+        strategyGameObject.SetActive(false);
+        zoom = commanderDefaultZoom;
     }
 
     void RTSCamera() {
-        RTSMover.transform.position = commander.transform.position;
-        cameraFollow.SetGetCameraFollowPositionFunc(() => RTSMover.transform.position);
-        commander.GetComponent<PlayerMovement>().enabled = false;
-        commander.GetComponent<PlayerAim>().enabled = false;
-        RTSMover.SetActive(true);
+        strategyGameObject.transform.position = commanderGameObject.transform.position;
+        cameraFollow.SetGetCameraFollowPositionFunc(() => strategyGameObject.transform.position);
+        commanderGameObject.GetComponent<PlayerMovement>().enabled = false;
+        commanderGameObject.GetComponent<PlayerAim>().enabled = false;
+        strategyGameObject.SetActive(true);
+        zoom = StrategyDefaultZoom;
+    }
+
+    void ZoomIn() {
+        if (zoom < 20f) {
+            return;
+        }
+        zoom -= ZoomAmount;
+    }
+    void ZoomOut() {
+        if (zoom > 60f) {
+            return;
+        }
+        zoom += ZoomAmount;
     }
 }

@@ -4,11 +4,20 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class CameraFollow : MonoBehaviour {
+    
     [SerializeField] float cameraMoveSpeed =2f;
-    Func<Vector3> GetCameraFollowPositionFunc;
 
-    public void Setup(Func<Vector3> GetCameraFollowPositionFunc) {
+    Camera myCamera;
+    Func<Vector3> GetCameraFollowPositionFunc;
+    Func<float> GetCameraZoomFunc;
+
+    public void Setup(Func<Vector3> GetCameraFollowPositionFunc, Func<float> GetCameraZoomFunc) {
         this.GetCameraFollowPositionFunc = GetCameraFollowPositionFunc;
+        this.GetCameraZoomFunc = GetCameraZoomFunc;
+    }
+
+    void Start() {
+        myCamera = transform.GetComponent<Camera>();
     }
 
     public void SetGetCameraFollowPositionFunc(Func<Vector3> GetCameraFollowPositionFunc) {
@@ -16,6 +25,11 @@ public class CameraFollow : MonoBehaviour {
     }
 
     void Update() {
+        HandleMovement();
+        HandleZoom();
+    }
+
+    void HandleMovement() {
         Vector3 cameraFollowPosition = GetCameraFollowPositionFunc();
         cameraFollowPosition.z = transform.position.z;
 
@@ -32,6 +46,25 @@ public class CameraFollow : MonoBehaviour {
             }
 
             transform.position = newCameraPosition;
+        }
+    }
+
+    void HandleZoom() {
+        float cameraZoom = GetCameraZoomFunc();
+
+        float cameraZoomDifference = cameraZoom - myCamera.orthographicSize;
+        float cameraZoomSpped = 1f;
+        
+        myCamera.orthographicSize += cameraZoomDifference * cameraZoomSpped * Time.deltaTime;
+
+        if (cameraZoomDifference > 0) {
+            if (myCamera.orthographicSize > cameraZoom) {
+                myCamera.orthographicSize = cameraZoom;
+            }
+        }else {
+            if (myCamera.orthographicSize < cameraZoom) {
+                myCamera.orthographicSize = cameraZoom;
+            }
         }
     }
 }

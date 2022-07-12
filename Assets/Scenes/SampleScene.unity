@@ -235,7 +235,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 10
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -309,8 +309,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cameraFollow: {fileID: 519420033}
-  commander: {fileID: 1028199063}
-  RTSMover: {fileID: 259084131}
+  commanderGameObject: {fileID: 1028199063}
+  strategyGameObject: {fileID: 259084131}
+  commanderDefaultZoom: 20
+  StrategyDefaultZoom: 50
+  ZoomAmount: 5
 --- !u!4 &601583786
 Transform:
   m_ObjectHideFlags: 0
@@ -561,7 +564,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b223d565ab5c136468d7eb7f2ecdafca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 20
+  moveSpeed: 10
 --- !u!114 &1028199070
 MonoBehaviour:
   m_ObjectHideFlags: 0
