@@ -5,23 +5,36 @@ using Movement;
 using UnityEngine;
 
 public class ToggleCameraState : MonoBehaviour {
-    [SerializeField] GameObject Commander;
+    [SerializeField] CameraFollow cameraFollow;
+    [SerializeField] GameObject commander;
     [SerializeField] GameObject RTSMover;
+
+    void Start() {
+        cameraFollow.Setup(() => commander.transform.position);
+    }
     void Update() {
         if (Input.GetKeyDown(KeyCode.Tab)) {
             if (!RTSMover.activeSelf) {
-                RTSMover.transform.position = Commander.transform.position;
-                Commander.GetComponent<PlayerMovement>().enabled = false;
-                RTSMover.SetActive(true);
+                RTSCamera();
             }
             else {
-                Commander.GetComponent<PlayerMovement>().enabled = true;
-                RTSMover.SetActive(false);
+                CommanderCamera();
             }
         }
     }
 
-    void TopDown() {
-        
+    void CommanderCamera() {
+        commander.GetComponent<PlayerMovement>().enabled = true;
+        commander.GetComponent<PlayerAim>().enabled = true;
+        cameraFollow.SetGetCameraFollowPositionFunc(() => commander.transform.position);
+        RTSMover.SetActive(false);
+    }
+
+    void RTSCamera() {
+        RTSMover.transform.position = commander.transform.position;
+        cameraFollow.SetGetCameraFollowPositionFunc(() => RTSMover.transform.position);
+        commander.GetComponent<PlayerMovement>().enabled = false;
+        commander.GetComponent<PlayerAim>().enabled = false;
+        RTSMover.SetActive(true);
     }
 }

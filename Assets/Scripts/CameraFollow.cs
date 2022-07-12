@@ -12,7 +12,7 @@ public class CameraFollow : MonoBehaviour {
     }
 
     public void SetGetCameraFollowPositionFunc(Func<Vector3> GetCameraFollowPositionFunc) {
-        this.GetCameraFollowPositionFunc = this.GetCameraFollowPositionFunc;
+        this.GetCameraFollowPositionFunc = GetCameraFollowPositionFunc;
     }
 
     void Update() {
@@ -24,6 +24,14 @@ public class CameraFollow : MonoBehaviour {
 
         if (distance > 0) {
             Vector3 newCameraPosition = transform.position + cameraMoveDir * distance * cameraMoveSpeed * Time.deltaTime;
+
+            float distanceAfterMoving = Vector3.Distance(newCameraPosition, cameraFollowPosition);
+
+            if (distanceAfterMoving > distance) {
+                newCameraPosition = cameraFollowPosition;
+            }
+
+            transform.position = newCameraPosition;
         }
     }
 }
