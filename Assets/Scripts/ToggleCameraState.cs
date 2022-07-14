@@ -28,10 +28,10 @@ public class ToggleCameraState : MonoBehaviour {
                 CommanderCamera();
             }
         }
-        if (Input.GetKeyDown(KeyCode.L) || Input.mouseScrollDelta.y > 0) {
+        if (Input.mouseScrollDelta.y > 0) {
             ZoomIn();
         }
-        if (Input.GetKeyDown(KeyCode.K) || Input.mouseScrollDelta.y < 0) {
+        if (Input.mouseScrollDelta.y < 0) {
             ZoomOut();
         }
     }
