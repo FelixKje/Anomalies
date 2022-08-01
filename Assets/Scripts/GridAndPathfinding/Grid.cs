@@ -48,6 +48,10 @@ public class Grid<TGridObject> {
     Vector3 GetWorldPosition(int x, int y) {
         return new Vector3(x, y) * cellSize + originPosition;
     }
+
+    public float GetCellSize() {
+        return this.cellSize;
+    }
     public int GetWidth() {
         return this.width;
     }
