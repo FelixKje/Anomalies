@@ -86,12 +86,12 @@ public class Pathfinding {
             // Right Down
             if (currentNode.y - 1 >= 0) neighbourList.Add(GetNode(currentNode.x + 1, currentNode.y - 1));
             // Right up
-            if (currentNode.y + 1 >= grid.GetHeight()) neighbourList.Add(GetNode(currentNode.x + 1, currentNode.y + 1));
+            if (currentNode.y + 1 < grid.GetHeight()) neighbourList.Add(GetNode(currentNode.x + 1, currentNode.y + 1));
         }
         // Down
         if (currentNode.y - 1 >= 0) neighbourList.Add(GetNode(currentNode.x, currentNode.y - 1));
         // up
-        if (currentNode.y + 1 >= grid.GetHeight()) neighbourList.Add(GetNode(currentNode.x, currentNode.y + 1));
+        if (currentNode.y + 1 < grid.GetHeight()) neighbourList.Add(GetNode(currentNode.x, currentNode.y + 1));
 
         return neighbourList;
     }
