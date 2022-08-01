@@ -9,6 +9,7 @@ public class UnitRTS : MonoBehaviour {
 
     void Awake() {
         selectedGameObject = transform.Find("Selected").gameObject;
+        SetSelectedVisible(false);
     }
 
     public void SetSelectedVisible(bool visible) {
