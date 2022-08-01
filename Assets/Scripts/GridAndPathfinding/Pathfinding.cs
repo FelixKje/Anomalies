@@ -8,10 +8,13 @@ public class Pathfinding {
     const int MOVE_STRAIGHT_COST = 10;
     const int MOVE_DIAGONAL_COST = 14;
     
+    public static Pathfinding Instance { get; private set; }
+    
     Grid<PathNode> grid;
     List<PathNode> openList;
     List<PathNode> closedList;
     public Pathfinding(int width, int height) {
+        Instance = this;
         grid = new Grid<PathNode>(width, height, 10f, Vector3.zero, (Grid<PathNode> g, int x, int y) => new PathNode(g, x, y));
     }
 
@@ -51,6 +54,10 @@ public class Pathfinding {
 
             foreach (var neighbourNode in GetNeighbourList(currentNode)) {
                 if (closedList.Contains(neighbourNode)) continue;
+                if (!neighbourNode.isWalkable) {
+                    closedList.Add(neighbourNode);
+                    continue;
+                }
 
                 int tentativeGCost = currentNode.gCost + CalculateDistanceCost(currentNode, neighbourNode);
                 if (tentativeGCost < neighbourNode.gCost) {
