@@ -26,7 +26,7 @@ public class MovePositionPathfinding : MonoBehaviour, IMovePosition {
             Vector3 moveVelocity = (nextPathPosition - transform.position).normalized;
             GetComponent<IMoveVelocity>().SetVelocity(moveVelocity);
 
-            float reachedPositionDistance = 6f;
+            float reachedPositionDistance = 2f;
             Debug.Log(Vector3.Distance(transform.position, nextPathPosition));
             if (Vector3.Distance(transform.position, nextPathPosition) < reachedPositionDistance) {
                 Debug.Log("Node reached next index:" + pathIndex);
