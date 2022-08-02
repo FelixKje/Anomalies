@@ -7,6 +7,7 @@ using Utility;
 public class GameRTSController : MonoBehaviour {
 
     [SerializeField] Transform selectionAreaTransform;
+    bool isActive;
 
     Vector3 startPosition;
     List<UnitRTS> selectedUnitRTSList;
@@ -17,8 +18,13 @@ public class GameRTSController : MonoBehaviour {
         selectionAreaTransform.gameObject.SetActive(false);
     }
     void Update() {
-        HandleSelectingUnits();
-        HandleCommandingSelectedUnits();
+        if (Input.GetKeyDown(KeyCode.LeftShift)) {
+            isActive = !isActive;
+        }
+        if (isActive) {
+            HandleSelectingUnits();
+            HandleCommandingSelectedUnits();
+        }
     }
 
     void HandleCommandingSelectedUnits() {
