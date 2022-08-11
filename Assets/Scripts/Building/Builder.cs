@@ -9,8 +9,8 @@ public class Builder : MonoBehaviour , IBuilding {
      [SerializeField] int cost;
      public void Build() {
           Vector3 buildPosition = Utilities.GetMouseWorldPosition();
-          Instantiate(gameObject, buildPosition, quaternion.identity);
-          Vector3 gridPosition = new Vector3();
+          Instantiate(building, buildPosition, quaternion.identity);
+          Pathfinding.Instance.Grid.GetXY(buildPosition, out int x, out int y);
+          Pathfinding.Instance.Grid.GetGridObject(x, y).isWalkable = false;
      }
-
 }
