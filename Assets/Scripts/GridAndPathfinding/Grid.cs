@@ -14,6 +14,8 @@ public class Grid<TGridObject> {
     Vector3 originPosition;
     TGridObject[,] gridArray;
     
+    public static Grid Instance { get; private set; }
+    
 
     public Grid(int width, int height, float cellSize, Vector3 originPosition, Func<Grid<TGridObject>, int, int, TGridObject> createGridObject) {
         this.width = width;
