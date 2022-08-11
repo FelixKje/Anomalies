@@ -4,7 +4,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class BuildMenu : MonoBehaviour {
+    
     [SerializeField] Builder drill;
+    [SerializeField] Builder unitSpawner;
     bool toggleBuildMenu;
 
     
@@ -16,6 +18,9 @@ public class BuildMenu : MonoBehaviour {
         if (toggleBuildMenu) {
             if (Input.GetKeyDown(KeyCode.Alpha1)) {
                 drill.Build();
+            }
+            if (Input.GetKeyDown(KeyCode.Alpha2)) {
+                unitSpawner.Build();
             }
         }
     }
