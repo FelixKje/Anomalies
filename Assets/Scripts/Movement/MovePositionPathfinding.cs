@@ -31,7 +31,5 @@ public class MovePositionPathfinding : MonoBehaviour, IMovePosition {
         } else {
             GetComponent<IMoveVelocity>().SetVelocity(Vector3.zero);
         }
-        
     }
-
 }
