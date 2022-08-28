@@ -10,7 +10,13 @@ namespace Movement {
         }
         void Shoot() {
             if (Input.GetMouseButtonDown(0)) {
-                Debug.DrawLine(weapon.position, Utilities.GetMouseWorldPosition(), Color.red, 1f);
+                var mousePosition = Utilities.GetMouseWorldPosition();
+                var direction = (mousePosition - transform.position).normalized;
+                
+                Debug.DrawLine(weapon.position, mousePosition, Color.red, 1f);
+                Debug.Log(direction);
+                
+                Debug.Log(Physics.Raycast(weapon.position, direction, 100));
             }
         }
         void Aim() {
