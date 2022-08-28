@@ -6,6 +6,12 @@ namespace Movement {
         [SerializeField] Transform weapon;
         void Update() {
             Aim();
+            Shoot();
+        }
+        void Shoot() {
+            if (Input.GetMouseButtonDown(0)) {
+                Debug.DrawLine(weapon.position, Utilities.GetMouseWorldPosition(), Color.red, 1f);
+            }
         }
         void Aim() {
             Vector3 mousePosition = Utilities.GetMouseWorldPosition();
@@ -16,6 +22,4 @@ namespace Movement {
             weapon.transform.eulerAngles = new Vector3(0, 0, angle);
         }
     }
-    
-    
 }
