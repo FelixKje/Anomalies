@@ -8,6 +8,7 @@ public class PathNode {
     public int fCost;
 
     public bool isWalkable;
+    public bool isBuildable;
     public PathNode cameFromNode;
     
     public PathNode(Grid<PathNode> grid, int x, int y) {
@@ -15,6 +16,7 @@ public class PathNode {
         this.x = x;
         this.y = y;
         isWalkable = true;
+        isBuildable = true;
     }
 
     public void CalculateFCost() {

@@ -13,8 +13,14 @@ public class Builder : MonoBehaviour , IBuilding {
           
           Pathfinding.Instance.Grid.GetXY(clickedPosition, out int x, out int y);
           
-          if (Pathfinding.Instance.Grid.GetGridObject(x, y).isWalkable) {
-               Pathfinding.Instance.Grid.GetGridObject(x, y).isWalkable = false;
+          if (Pathfinding.Instance.Grid.GetGridObject(x, y).isBuildable) {
+               var buildNode = Pathfinding.Instance.Grid.GetGridObject(x, y);
+               buildNode.isWalkable = false;
+               for (int i = x-2; i < x+3; i++) {
+                    for (int j = y-2; j < y+3; j++) {
+                         Pathfinding.Instance.Grid.GetGridObject(i, j).isBuildable = false;
+                    }
+               }
                
                var offset = Vector3.up * Pathfinding.Instance.Grid.GetCellSize()/2 + Vector3.right * Pathfinding.Instance.Grid.GetCellSize()/2;
                Vector3 buildPosition = Pathfinding.Instance.Grid.GetWorldPosition(x, y);
