@@ -4,6 +4,7 @@ using Utility;
 namespace Movement {
     public class PlayerAim : MonoBehaviour {
         [SerializeField] Transform weapon;
+        [SerializeField][Range(0f,90f)] float bulletSpread = 0.05f;
         void Update() {
             Aim();
             Shoot();
@@ -13,10 +14,13 @@ namespace Movement {
                 var mousePosition = Utilities.GetMouseWorldPosition();
                 var direction = (mousePosition - transform.position).normalized;
                 
-                Debug.DrawLine(weapon.position, mousePosition, Color.red, 1f);
-                Debug.Log(direction);
+                var randomHitPosX = Random.Range(mousePosition.x - bulletSpread, mousePosition.x + bulletSpread);
+                var randomHitPosY = Random.Range(mousePosition.y - bulletSpread, mousePosition.y + bulletSpread);
+                var randomHitPos = new Vector3(randomHitPosX, randomHitPosY, direction.z);
                 
-                Debug.Log(Physics.Raycast(weapon.position, direction, 100));
+                Debug.DrawLine(weapon.position, randomHitPos, Color.red, 1f);
+                Debug.Log(direction);
+
             }
         }
         void Aim() {
