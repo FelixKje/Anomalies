@@ -10,8 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4586661910000777280}
   - component: {fileID: 4586661910000777281}
+  - component: {fileID: 6250981820744919458}
   m_Layer: 0
-  m_Name: UnitSpawnerBuilding
+  m_Name: Barracks
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -85,6 +86,20 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &6250981820744919458
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4586661910000777342}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b21744e7a55bee4bb24e2382b7c5aa6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  unit: {fileID: 1540017004477299406, guid: 4ab5a13eae7b65e4390328cbaebd7936, type: 3}
+  spawnTimer: 5
 --- !u!1 &8447429415099724706
 GameObject:
   m_ObjectHideFlags: 0

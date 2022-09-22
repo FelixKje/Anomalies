@@ -307,7 +307,7 @@ GameObject:
   - component: {fileID: 9082029661468656721}
   m_Layer: 0
   m_Name: Lieutenant
-  m_TagString: Untagged
+  m_TagString: Friendly
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -456,6 +456,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weapon: {fileID: 1540017003174220617}
+  bulletSpread: 14.9
 --- !u!114 &9007141550706884112
 MonoBehaviour:
   m_ObjectHideFlags: 0
