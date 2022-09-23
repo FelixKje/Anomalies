@@ -456,7 +456,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be30ae9afc7108b45818cf0dce4dc3ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletSpawnPoint: {fileID: 6011674790325793189}
+  weapon: {fileID: 1540017003174220617}
   bulletSpread: 2
   bulletGameObject: {fileID: 8574674735762887746, guid: adba438c42c556442b7b80e79e4ca039, type: 3}
 --- !u!114 &9007141550706884112

@@ -5,7 +5,7 @@ using Random = UnityEngine.Random;
 
 namespace Movement {
     public class PlayerAim : MonoBehaviour {
-        [SerializeField] Transform bulletSpawnPoint;
+        [SerializeField] Transform weapon;
         [SerializeField][Range(0f,90f)] float bulletSpread = 0.05f;
         [SerializeField] GameObject bulletGameObject;
 
@@ -16,18 +16,25 @@ namespace Movement {
         }
         void Shoot() {
             if (Input.GetMouseButton(0)) {
-                Instantiate(bulletGameObject, bulletSpawnPoint);
+                var bulletTransform = Instantiate(bulletGameObject, weapon);
+                
+                
                 
                 var mousePosition = Utilities.GetMouseWorldPosition();
                 var direction = (mousePosition - transform.position).normalized;
+                
 
+                var randomHitPosX = Random.Range(mousePosition.x - bulletSpread, mousePosition.x + bulletSpread);
+                var randomHitPosY = Random.Range(mousePosition.y - bulletSpread, mousePosition.y + bulletSpread);
+                var randomHitPos = new Vector3(randomHitPosX, randomHitPosY, direction.z);
+                
+                bulletTransform.GetComponent<Bullet>().Setup(direction);
+                
                 isDebug = false;
                 if (isDebug) {
-                    var randomHitPosX = Random.Range(mousePosition.x - bulletSpread, mousePosition.x + bulletSpread);
-                    var randomHitPosY = Random.Range(mousePosition.y - bulletSpread, mousePosition.y + bulletSpread);
-                    var randomHitPos = new Vector3(randomHitPosX, randomHitPosY, direction.z);
+                    
                 
-                    Debug.DrawLine(bulletSpawnPoint.position, randomHitPos, Color.red, 1f);
+                    Debug.DrawLine(weapon.position, randomHitPos, Color.red, 1f);
                     Debug.Log(direction);
                 }
             }
@@ -38,7 +45,7 @@ namespace Movement {
 
             float angle = Mathf.Atan2(aimDirection.y, aimDirection.x) * Mathf.Rad2Deg;
 
-            bulletSpawnPoint.transform.eulerAngles = new Vector3(0, 0, angle);
+            weapon.transform.eulerAngles = new Vector3(0, 0, angle);
         }
     }
 }
