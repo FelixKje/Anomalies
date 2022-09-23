@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &48941700439788258
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8274985616443884753}
+  m_Layer: 0
+  m_Name: Muzzle
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8274985616443884753
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 48941700439788258}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.077, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 632368301464892439}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &632368301310372052
 GameObject:
   m_ObjectHideFlags: 0
@@ -64,6 +95,7 @@ Transform:
   m_Children:
   - {fileID: 632368301655075039}
   - {fileID: 632368301731249355}
+  - {fileID: 8274985616443884753}
   m_Father: {fileID: 632368301310372043}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -304,7 +336,7 @@ GameObject:
   - component: {fileID: 632368302596718917}
   m_Layer: 0
   m_Name: Commander
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -451,7 +483,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be30ae9afc7108b45818cf0dce4dc3ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weapon: {fileID: 632368301310372043}
+  bulletSpawnPoint: {fileID: 8274985616443884753}
+  bulletSpread: 0.3
+  bulletGameObject: {fileID: 8574674735762887746, guid: adba438c42c556442b7b80e79e4ca039, type: 3}
 --- !u!1 &840506592353313356
 GameObject:
   m_ObjectHideFlags: 0
@@ -547,7 +581,7 @@ GameObject:
   - component: {fileID: 4673743742017534753}
   - component: {fileID: 3618743387790066516}
   m_Layer: 0
-  m_Name: Upper Arm R (1)
+  m_Name: Lower Arm R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -631,7 +665,7 @@ GameObject:
   - component: {fileID: 216380338776473951}
   - component: {fileID: 9030255339442628546}
   m_Layer: 0
-  m_Name: Upper Arm R (2)
+  m_Name: Lower Arm L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -692,7 +726,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 0.9529412, g: 0.5137255, b: 0.011764706, a: 1}
   m_FlipX: 0
