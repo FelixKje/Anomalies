@@ -485,7 +485,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weapon: {fileID: 632368301310372043}
   bulletSpread: 0.3
-  bulletGameObject: {fileID: 8574674735762887746, guid: adba438c42c556442b7b80e79e4ca039, type: 3}
+  bulletGameObject: {fileID: 6278594953814911053, guid: adba438c42c556442b7b80e79e4ca039, type: 3}
 --- !u!1 &840506592353313356
 GameObject:
   m_ObjectHideFlags: 0

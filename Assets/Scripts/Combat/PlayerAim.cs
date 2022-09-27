@@ -8,6 +8,8 @@ namespace Movement {
         [SerializeField] Transform weapon;
         [SerializeField][Range(0f,90f)] float bulletSpread = 0.05f;
         [SerializeField] GameObject bulletGameObject;
+        [SerializeField] float weaponFireRate = 0.2f;
+        float timePassed;
 
         bool isDebug;
         void Update() {
@@ -15,27 +17,25 @@ namespace Movement {
             Shoot();
         }
         void Shoot() {
+            if (timePassed > weaponFireRate) {
+                timePassed += Time.deltaTime;
+            }
             if (Input.GetMouseButton(0)) {
-                var bulletTransform = Instantiate(bulletGameObject, weapon);
                 
+                timePassed += Time.deltaTime;
+                if (timePassed >= weaponFireRate) {
+                    var bullet = Instantiate(bulletGameObject);
+                    bullet.transform.position = weapon.position;
                 
-                
-                var mousePosition = Utilities.GetMouseWorldPosition();
-                var direction = (mousePosition - transform.position).normalized;
-                
+                    var mousePosition = Utilities.GetMouseWorldPosition();
+                    var direction = (mousePosition - transform.position).normalized;
 
-                var randomHitPosX = Random.Range(mousePosition.x - bulletSpread, mousePosition.x + bulletSpread);
-                var randomHitPosY = Random.Range(mousePosition.y - bulletSpread, mousePosition.y + bulletSpread);
-                var randomHitPos = new Vector3(randomHitPosX, randomHitPosY, direction.z);
+                    var randomHitPosX = Random.Range(mousePosition.x - bulletSpread, mousePosition.x + bulletSpread);
+                    var randomHitPosY = Random.Range(mousePosition.y - bulletSpread, mousePosition.y + bulletSpread);
+                    var randomHitPos = new Vector3(randomHitPosX, randomHitPosY, direction.z);
                 
-                bulletTransform.GetComponent<Bullet>().Setup(direction);
-                
-                isDebug = false;
-                if (isDebug) {
-                    
-                
-                    Debug.DrawLine(weapon.position, randomHitPos, Color.red, 1f);
-                    Debug.Log(direction);
+                    bullet.GetComponent<Bullet>().Setup(direction);
+                    timePassed -= weaponFireRate;
                 }
             }
         }
