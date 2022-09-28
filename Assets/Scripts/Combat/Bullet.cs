@@ -2,25 +2,34 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Pool;
 
 public class Bullet : MonoBehaviour {
     [SerializeField] float moveSpeed = 60f;
     [SerializeField] float lifeTime = 2f;
-    Vector3 shootDir;
+
+
+    float timePassed;
+    IObjectPool<Bullet> _pool;
+    Vector3 _shootDir;
     public void Setup(Vector3 shootDir) {
-        this.shootDir = shootDir;
+        this._shootDir = shootDir;
     }
 
+    public void SetPool(IObjectPool<Bullet> pool) => this._pool = pool;
+
     void Update() {
-        transform.position += shootDir * moveSpeed * Time.deltaTime;
-        Destroy(gameObject,lifeTime);
+        transform.position += _shootDir * moveSpeed * Time.deltaTime;
+        timePassed += Time.deltaTime;
+        if (timePassed > lifeTime) 
+            _pool.Release(this);
+        
     }
     void OnTriggerEnter2D(Collider2D other) {
         Target target = other.GetComponent<Target>();
-        Debug.Log("Hit");
         if (target != null) {
             target.Damage();
-            Destroy(gameObject);
+            _pool.Release(this);
         }
     }
 }

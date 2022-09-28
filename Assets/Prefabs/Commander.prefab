@@ -334,6 +334,7 @@ GameObject:
   - component: {fileID: 632368302596718918}
   - component: {fileID: 632368302596718919}
   - component: {fileID: 632368302596718917}
+  - component: {fileID: 1028199064}
   m_Layer: 0
   m_Name: Commander
   m_TagString: Player
@@ -484,8 +485,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weapon: {fileID: 632368301310372043}
-  bulletSpread: 0.3
-  bulletGameObject: {fileID: 6278594953814911053, guid: adba438c42c556442b7b80e79e4ca039, type: 3}
+--- !u!114 &1028199064
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 632368302596718924}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21e3d832154e85440b063aee5a4e109a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  muzzlePos: {fileID: 8274985616443884753}
+  bulletSpread: 0.05
+  bulletPrefab: {fileID: 6278594953814911053, guid: adba438c42c556442b7b80e79e4ca039, type: 3}
+  weaponFireRate: 0.2
 --- !u!1 &840506592353313356
 GameObject:
   m_ObjectHideFlags: 0
