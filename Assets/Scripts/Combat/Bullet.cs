@@ -12,6 +12,10 @@ public class Bullet : MonoBehaviour {
     float timePassed;
     IObjectPool<Bullet> _pool;
     Vector3 _shootDir;
+
+    void OnEnable() {
+        timePassed = 0;
+    }
     public void Setup(Vector3 shootDir) {
         this._shootDir = shootDir;
     }

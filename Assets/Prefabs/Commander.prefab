@@ -498,8 +498,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   muzzlePos: {fileID: 8274985616443884753}
-  bulletSpread: 0.05
-  bulletPrefab: {fileID: 6278594953814911053, guid: adba438c42c556442b7b80e79e4ca039, type: 3}
+  bulletSpread: 0.4
+  bulletPrefab: {fileID: 3541904499516423063, guid: adba438c42c556442b7b80e79e4ca039, type: 3}
   weaponFireRate: 0.2
 --- !u!1 &840506592353313356
 GameObject:

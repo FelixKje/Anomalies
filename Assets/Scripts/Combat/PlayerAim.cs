@@ -8,15 +8,21 @@ namespace Movement {
     public class PlayerAim : MonoBehaviour {
         [SerializeField] Transform weapon;
 
-        public event Action ShootInputPressed;
+        Shooting shooting;
+
+        void Awake() {
+            shooting = GetComponent<Shooting>();
+        }
+
         void Update() {
             Aim();
             Shoot();
         }
         void Shoot() {
             if (Input.GetMouseButton(0)) {
-                if (ShootInputPressed != null)
-                    ShootInputPressed.Invoke();
+                if (shooting != null) {
+                    shooting.Shoot(Utilities.GetMouseWorldPosition());
+                }
             }
         }
         void Aim() {

@@ -14,14 +14,12 @@ public class Shooting : MonoBehaviour
     [SerializeField] Bullet bulletPrefab;
     [SerializeField] float weaponFireRate = 0.2f;
 
-    ObjectPool<Bullet> bulletPool;
+    IObjectPool<Bullet> bulletPool;
     float timePassed;
 
 
     void Awake() => bulletPool = new ObjectPool<Bullet>(CreateBullet, OnTakeBulletFromPool, OnReturnBulletToPool, default,true, 100 );
-    void Start() {
-        GetComponent<PlayerAim>().ShootInputPressed += Shoot;
-    }
+    
 
     Bullet CreateBullet() {
         var bullet = Instantiate(bulletPrefab);
@@ -37,17 +35,13 @@ public class Shooting : MonoBehaviour
         bullet.gameObject.SetActive(false);
     }
 
-    void Shoot() {
-        if (Input.GetMouseButtonDown(0)) timePassed = weaponFireRate;
+    public void Shoot(Vector3 shootPos) {
         timePassed += Time.deltaTime;
         if (timePassed >= weaponFireRate) {
-            Debug.Log(bulletPool.CountInactive);
-                
             var bullet = bulletPool.Get();
-            var mousePosition = Utilities.GetMouseWorldPosition();
 
-            var randomHitPosX = Random.Range(mousePosition.x - bulletSpread, mousePosition.x + bulletSpread);
-            var randomHitPosY = Random.Range(mousePosition.y - bulletSpread, mousePosition.y + bulletSpread);
+            var randomHitPosX = Random.Range(shootPos.x - bulletSpread, shootPos.x + bulletSpread);
+            var randomHitPosY = Random.Range(shootPos.y - bulletSpread, shootPos.y + bulletSpread);
             var randomHitPos = new Vector3(randomHitPosX, randomHitPosY);
                 
             var direction = (randomHitPos - transform.position).normalized;
