@@ -2001,14 +2001,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1028199064, guid: 9cbf73f29a18f8143bdc35c57e2f6c99, type: 3}
-      propertyPath: bulletPrefab
-      value: 
-      objectReference: {fileID: 3541904499516423063, guid: adba438c42c556442b7b80e79e4ca039, type: 3}
-    - target: {fileID: 1028199064, guid: 9cbf73f29a18f8143bdc35c57e2f6c99, type: 3}
-      propertyPath: bulletSpread
-      value: 1.5
-      objectReference: {fileID: 0}
     - target: {fileID: 632368302596718914, guid: 9cbf73f29a18f8143bdc35c57e2f6c99, type: 3}
       propertyPath: m_RootOrder
       value: 2
